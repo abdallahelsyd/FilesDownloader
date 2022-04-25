@@ -1,7 +1,8 @@
-package com.abdallah.filesdownloader
+package com.abdallah.filesdownloader.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.abdallah.filesdownloader.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
