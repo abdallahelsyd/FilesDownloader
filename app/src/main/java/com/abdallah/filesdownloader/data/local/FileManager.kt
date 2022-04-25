@@ -32,25 +32,10 @@ class FileManager {
             file.mkdir()
         }
     }
-    private fun createFile() {
-        if (!file.isFile) {
-            if (!(file.isDirectory)) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    try {
-                        Files.createDirectory(Paths.get(file.absolutePath))
-                    } catch (e: IOException) {
-                        e.printStackTrace()
-                    }
-                } else {
-                    file.mkdir()
-                }
-            }
-        }
-    }
+
 
 
     fun downloadFile(item: FileItem): Flow<DownloadData> {
-        //createFile()
         createDirectory()
         PRDownloader.download(item.url, file.path, item.name)
             .build()
