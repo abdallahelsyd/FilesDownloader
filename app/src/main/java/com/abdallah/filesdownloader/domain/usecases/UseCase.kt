@@ -1,5 +1,11 @@
-package com.abdallah.filelistdownloader.domain.useCases
+package com.abdallah.filesdownloader.domain.usecases
 
 interface UseCase<ReturnType> {
-    fun invoke(): ReturnType
+    interface NoParam<TYPE> {
+        fun invoke(): TYPE
+    }
+
+    interface WithParam<TYPE, PARAM> {
+        fun invoke(param: PARAM): TYPE
+    }
 }

@@ -1,8 +1,9 @@
-package com.esmaeel.usecases.di
+package com.abdallah.filesdownloader.di
 
+import com.abdallah.filesdownloader.data.local.FileManager
+import com.abdallah.filesdownloader.data.remote.ApiService
 import com.abdallah.filesdownloader.domain.repositories.IRepository
-import com.abdallah.filesdownloader.domain.repositories.ListRepository
-import com.abdallah.filesdownloader.di.ContextProviders
+import com.abdallah.filesdownloader.domain.repositories.FilesRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,10 +15,19 @@ import javax.inject.Singleton
 @Module
 object RepositoriesModule {
 
+
+    @Singleton
+    @Provides
+    fun fileManager(
+    ): FileManager =
+        FileManager()
+
     @Provides
     @Singleton
     fun provideUsersRepository(
+        fileManager: FileManager,
+        apiService: ApiService,
         contextProviders: ContextProviders
     ): IRepository =
-        ListRepository( contextProviders)
+        FilesRepository(apiService,fileManager,contextProviders)
 }
